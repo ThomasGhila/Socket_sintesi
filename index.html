@@ -30,11 +30,17 @@
         </p>
         <p class="replyText terminal__prompt">
           <span class="terminal__prompt--typing line2Anim">
-            <span class="cover line2"> </span>- Africa
+            <span class="cover line2"> </span>Africa
+          </span>
+          <span>
+            <img src="assets/Asset 1.png" style="width: 18px" />
           </span>
         </p>
         <p class="replyText terminal__prompt terminal__prompt--checkout line3">
-          <span class="terminal__window--highlight"> </span>- Asia
+          <span class="terminal__window--highlight"> </span>Asia<span>
+            <img src="assets/Asset 1.png" style="width: 18px" />
+            <img src="assets/Asset 1.png" style="width: 18px" />
+          </span>
         </p>
         <p
           class="
@@ -44,13 +50,23 @@
           "
         >
           <span class="terminal__prompt--typing">
-            <span class="cover line4"> </span>- Oceania
-          </span>
+            <span class="cover line4"> </span>Oceania </span
+          ><span>
+            <img src="assets/Asset 1.png" style="width: 18px" />
+            <img src="assets/Asset 1.png" style="width: 18px" />
+            <img src="assets/Asset 1.png" style="width: 18px"
+          /></span>
         </p>
         <p class="replyText terminal__prompt terminal__prompt--mail line5">
-          - America
-          <span class="terminal__window--highlight"> </span>
+          <span class="terminal__window--highlight"> </span>America
+          <span>
+            <img src="assets/Asset 1.png" style="width: 18px" />
+            <img src="assets/Asset 1.png" style="width: 18px" />
+            <img src="assets/Asset 1.png" style="width: 18px" />
+            <img src="assets/Asset 1.png" style="width: 18px"
+          /></span>
         </p>
+
         <!-- <p
         class="homeText terminal__prompt terminal__prompt--mail line6"
         style="margin-bottom: 30px"
@@ -309,28 +325,32 @@
           var elem = document.getElementById("forFullScreen");
           if (elem.requestFullscreen) {
             elem.requestFullscreen();
+            elem.getElementById("forFullScreen").onclick = exitFullScreen();
           } else if (elem.mozRequestFullScreen) {
             elem.mozRequestFullScreen();
+            elem.getElementById("forFullScreen").onclick = exitFullScreen();
           } else if (elem.webkitRequestFullscreen) {
             elem.webkitRequestFullscreen();
+            elem.getElementById("forFullScreen").onclick = exitFullScreen();
           } else if (elem.msRequestFullscreen) {
             elem.msRequestFullscreen();
+            elem.getElementById("forFullScreen").onclick = exitFullScreen();
           }
         }
         function exitFullScreen() {
           var elem = document.getElementById("forFullScreen");
-          if (document.exitFullscreen) {
+          if (elem.exitFullscreen) {
             elem.exitFullscreen();
-            document.getElementById("fullScreen").onclick = goFullScreen();
-          } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-            document.getElementById("fullScreen").onclick = goFullScreen();
-          } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-            document.getElementById("fullScreen").onclick = goFullScreen();
-          } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-            document.getElementById("fullScreen").onclick = goFullScreen();
+            elem.getElementById("forFullScreen").onclick = goFullScreen();
+          } else if (elem.mozCancelFullScreen) {
+            elem.mozCancelFullScreen();
+            elem.getElementById("forFullScreen").onclick = goFullScreen();
+          } else if (elem.webkitExitFullscreen) {
+            elem.webkitExitFullscreen();
+            elem.getElementById("forFullScreen").onclick = goFullScreen();
+          } else if (elem.msExitFullscreen) {
+            elem.msExitFullscreen();
+            elem.getElementById("forFullScreen").onclick = goFullScreen();
           }
         }
 
