@@ -79,9 +79,15 @@ mark {
   visibility: hidden;
 }
 
-.homeText {
-  font-size: 17px;
+.questionText {
+  font-size: 30px;
   line-height: 22px;
+  margin: 0;
+}
+
+.replyText {
+  font-size: 25px;
+  line-height: 40px;
   margin: 0;
 }
 
