@@ -146,7 +146,31 @@
       </div>
 
       <script src="sketch.js" id="forFullScreen"></script>
+      <script src="/socket.io/socket.io.js"></script>
       <script>
+        // tieni traccia dell'indice dell'array
+        let arrayIndex = 0;
+        // array domande
+        const domande = ["a", "b", "c"];
+        // initialize socket variable on client
+        const socket = io();
+
+        // ascolta il saluto del server
+        socket.on("greetings", (message) => {
+          // stampa il messaggio in console
+          console.log(message);
+        });
+
+        // cambia lo sfondo quando il valore del potenziometro cambia
+        socket.on("buttonPressed", (message) => {
+          if (arrayIndex === domande.length - 1) {
+            arrayIndex = 0;
+          } else {
+            arrayIndex++;
+          }
+          console.log("nuova domanda", domande[arrayIndex]);
+        });
+
         function ShowAndHide0() {
           var x0A = document.getElementById("myDiv0A");
           if (x0A.style.display == "none") {
@@ -420,16 +444,6 @@
       </script>
 
       <div id="sample"></div>
-
-      <script>
-        var socket = io();
-
-        socket.on("data", function (data) {
-          console.log(data);
-
-          document.getElementById("sample").style.opacity = data + "%";
-        });
-      </script>
     </div>
   </body>
 </html>
