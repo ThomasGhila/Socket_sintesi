@@ -13,10 +13,6 @@
   </head>
 
   <body>
-    <audio id="myAudio">
-      <source src="Aphex Twin.mp3" type="audio/mpeg" />
-    </audio>
-
     <button ONCLICK="goFullScreen()" class="btn tabOpener">fullScreen</button>
     <div class="welcomeText">
       <div class="logoAzienda">
@@ -70,79 +66,6 @@
         /></span>
       </p>
 
-      <!-- <p
-        class="homeText terminal__prompt terminal__prompt--mail line6"
-        style="margin-bottom: 30px"
-      >
-        simple as that.
-        <span class="terminal__window--highlight"> </span>
-      </p>
-
-      <p
-        class="homeText terminal__prompt terminal__prompt--checkout line7"
-        style="margin-bottom: 30px"
-      >
-        what about your role?
-        <span class="terminal__window--highlight"> </span>
-      </p>
-      <p
-        class="
-          homeText
-          terminal__prompt terminal__prompt--show-contact
-          line8Anim
-        "
-      >
-        you give it answers.
-        <span class="terminal__prompt--typing">
-          <span class="cover cover--show-contact line8"> </span>
-        </span>
-      </p>
-      <p class="homeText terminal__prompt terminal__prompt--mail line9">
-        <button ONCLICK="ShowAndHide()" class="btn tabOpener">
-          order your u.ai
-        </button>
-        for free and
-        <span class="terminal__window--highlight"> </span>
-      </p>
-      <p
-        class="homeText terminal__prompt terminal__prompt--mail line10"
-        style="margin-bottom: 50px"
-      >
-        find the answers you were looking for.
-        <span class="terminal__window--highlight"> </span>
-      </p>
-
-      <p class="homeText terminal__prompt terminal__prompt--mail line11">
-        <button ONCLICK="ShowAndHide()" class="btn tabOpener">
-          order your u.ai</button
-        ><span> <img src="assets/Arrow.png" id="arrowLeft" /></span>
-        <span class="terminal__window--highlight"> </span>
-      </p>
-      <p class="homeText terminal__prompt terminal__prompt--mail line12">
-        <button ONCLICK="ShowAndHide()" class="btn tabOpener">
-          order your u.ai</button
-        ><span> <img src="assets/Arrow.png" id="arrowLeft" /></span>
-        <span class="terminal__window--highlight"> </span>
-      </p>
-      <p class="homeText terminal__prompt terminal__prompt--mail line13">
-        <button ONCLICK="ShowAndHide()" class="btn tabOpener">
-          order your u.ai</button
-        ><span> <img src="assets/Arrow.png" id="arrowLeft" /></span>
-        <span class="terminal__window--highlight"> </span>
-      </p>
-      <p class="homeText terminal__prompt terminal__prompt--mail line14">
-        <button ONCLICK="ShowAndHide()" class="btn tabOpener">
-          order your u.ai</button
-        ><span> <img src="assets/Arrow.png" id="arrowLeft" /></span>
-        <span class="terminal__window--highlight"> </span>
-      </p>
-      <p class="homeText terminal__prompt terminal__prompt--mail line15">
-        <button ONCLICK="ShowAndHide()" class="btn tabOpener">
-          order your u.ai</button
-        ><span> <img src="assets/Arrow.png" id="arrowLeft" /></span>
-        <span class="terminal__window--highlight"> </span>
-      </p> -->
-
       <div class="nameAzienda">
         <img src="assets/nameAzienda.png" id="logoAzienda" />
       </div>
@@ -153,7 +76,11 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
       // variabile per prendere audio
-      var audio = document.getElementById("myAudio");
+      var audio;
+
+      function preload() {
+        audio = new Audio("assets/AphexTwin.mp3");
+      }
 
       // tieni traccia dell'indice dell'array
       let arrayIndex = 0;
@@ -170,18 +97,16 @@
 
       // cambio domanda quando si preme un bottone
       socket.on("buttonPressed", (message) => {
+        audio.pause();
+        audio.currentTime = 0;
         if (arrayIndex === domande.length - 1) {
           arrayIndex = 0;
         } else {
           arrayIndex++;
         }
         console.log("nuova domanda", domande[arrayIndex]);
-        playAudio();
-      });
-
-      function playAudio() {
         audio.play();
-      }
+      });
     </script>
   </body>
 </html>
