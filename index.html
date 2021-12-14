@@ -13,100 +13,31 @@
   </head>
 
   <body>
+    <!-- iFrame just let's autoplay work with Chrome without any interaction -->
+    <!-- <audio id="alarm" src="assets/AphexTwin.mp3" muted></audio> -->
+    <div class="textContainer">
+      <div id="domanda"></div>
+      <div id="risposta1"></div>
+      <!-- <div id="risposta2"></div>
+    <div id="risposta3"></div>
+    <div id="risposta4"></div> -->
+    </div>
     <button ONCLICK="goFullScreen()" class="btn tabOpener">fullScreen</button>
-    <div class="welcomeText">
-      <div class="logoAzienda">
-        <img src="assets/Logotipo.png" id="logoAzienda" />
-      </div>
 
-      <p class="questionText terminal__prompt" style="margin-bottom: 60px">
-        <span
-          class="terminal__prompt--typing line1Anim"
-          style="margin-bottom: 60px"
-        >
-          <span class="cover line1"> </span>In quale continente vivi?
-        </span>
-      </p>
-      <p class="replyText terminal__prompt">
-        <span class="terminal__prompt--typing line2Anim">
-          <span class="cover line2"> </span>Africa
-        </span>
-        <span>
-          <img src="assets/Asset 1.png" style="width: 18px" />
-        </span>
-      </p>
-      <p class="replyText terminal__prompt terminal__prompt--checkout line3">
-        <span class="terminal__window--highlight"> </span>Asia<span>
-          <img src="assets/Asset 1.png" style="width: 18px" />
-          <img src="assets/Asset 1.png" style="width: 18px" />
-        </span>
-      </p>
-      <p
-        class="
-          replyText
-          terminal__prompt terminal__prompt--show-contact
-          line4Anim
-        "
-      >
-        <span class="terminal__prompt--typing">
-          <span class="cover line4"> </span>Oceania </span
-        ><span>
-          <img src="assets/Asset 1.png" style="width: 18px" />
-          <img src="assets/Asset 1.png" style="width: 18px" />
-          <img src="assets/Asset 1.png" style="width: 18px"
-        /></span>
-      </p>
-      <p class="replyText terminal__prompt terminal__prompt--mail line5">
-        <span class="terminal__window--highlight"> </span>America
-        <span>
-          <img src="assets/Asset 1.png" style="width: 18px" />
-          <img src="assets/Asset 1.png" style="width: 18px" />
-          <img src="assets/Asset 1.png" style="width: 18px" />
-          <img src="assets/Asset 1.png" style="width: 18px"
-        /></span>
-      </p>
+    <div class="logoAzienda">
+      <img src="assets/Logotipo.png" id="logoAzienda" />
+    </div>
 
-      <div class="nameAzienda">
-        <img src="assets/nameAzienda.png" id="logoAzienda" />
-      </div>
+    <div class="nameAzienda">
+      <img src="assets/nameAzienda.png" id="logoAzienda" />
     </div>
 
     <script src="sketch.js" id="forFullScreen"></script>
-    <script src="functions.js"></script>
+    <script src="fullscreen.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-      // variabile per prendere audio
-      var audio;
-
-      function preload() {
-        audio = new Audio("assets/AphexTwin.mp3");
-      }
-
-      // tieni traccia dell'indice dell'array
-      let arrayIndex = 0;
-      // array domande
-      const domande = ["a", "b", "c"];
-      // initialize socket variable on client
-      const socket = io();
-
-      // ascolta il saluto del server
-      socket.on("greetings", (message) => {
-        // stampa il messaggio in console
-        console.log(message);
-      });
-
-      // cambio domanda quando si preme un bottone
-      socket.on("buttonPressed", (message) => {
-        audio.pause();
-        audio.currentTime = 0;
-        if (arrayIndex === domande.length - 1) {
-          arrayIndex = 0;
-        } else {
-          arrayIndex++;
-        }
-        console.log("nuova domanda", domande[arrayIndex]);
-        audio.play();
-      });
-    </script>
+    <script src="typewriter.js"></script>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <script src="onClick.js"></script>
+    <script src="playlist.js"></script>
   </body>
 </html>

@@ -7,6 +7,12 @@ var mappedDistanceNoRand;
 let noiseVar;
 let seed = 0;
 
+let pcursorPosX;
+let pcursorPosY;
+let noiseVarX;
+let noiseVarY;
+let seed2 = 0;
+
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   canvas.position(0, 0);
@@ -49,30 +55,41 @@ function draw() {
 
   for (let x = 23; x < width - 23; x += 23) {
     for (let y = 23; y < height - 23; y += 23) {
-      let distance = dist(x, y, mouseX, mouseY);
-      let distance2 = dist(mouseX, mouseY, pmouseX, pmouseY);
-      let mappedDistance2 = map(distance2, 0, width, 25, 1000);
+      let cursorPosX = noiseVarX;
+      let cursorPosY = noiseVarY;
+
+      let distance = dist(x, y, cursorPosX, cursorPosY);
+      let distance2 = dist(cursorPosX, cursorPosY, pcursorPosX, pcursorPosY);
+      let mappedDistance2 = map(distance2, 0, width, 20, 100);
 
       frameRate(10);
-      noiseVar = noise(seed, seed * 50);
+      noiseVar = noise(seed * 50);
+      noiseVarX = noise(seed2 * 20) * width;
+      noiseVarY = noise(seed2 * 5) * height;
 
-      // if (distance < mappedDistance2 / noiseVar) {
-      //   fill("#28ff02");
+      if (distance < mappedDistance2 / noiseVar) {
+        fill("#28ff02");
 
-      //   mappedDistanceNoRand = map(distance, 0, mappedDistance2, 50, 5);
-      //   mappedDistance = mappedDistanceNoRand * noiseVar;
-      // } else {
-      //   mappedDistance = 2;
-      //   fill("#c1c1c1");
-      // }
-      mappedDistance = 2;
-      fill("#c1c1c1");
+        mappedDistanceNoRand = map(distance, 0, mappedDistance2, 40, 5);
+        mappedDistance = mappedDistanceNoRand * noiseVar;
+      } else {
+        mappedDistance = 2;
+        fill("#c1c1c1");
+      }
 
       noStroke();
 
       ellipse(x, y, mappedDistance);
 
       seed += 0.01;
+      seed2 += 0.000005;
+
+      pcursorPosX = cursorPosX;
+      pcursorPosY = cursorPosY;
+
+      // console.log("noiseVar:" + noiseVar);
+      // console.log("noiseVarX:" + noiseVarX);
+      // console.log("noiseVarY:" + noiseVarY);
     }
   }
 }
